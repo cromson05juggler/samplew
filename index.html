@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="bootstrap/js/jquery.min.js"></script>
+  <script src="bootstrap/js/bootstrap.min.js"></script>
+<style>
+   <script src="javascript/validation.js">    </script>
+
+   <script language="javascript">
+             function validation(f)
+             {
+               if(empty_textbox(f.username)==false)
+               {
+
+                 if(empty_textbox(f.password)==false)
+                {
+                 f.submit();
+               }
+               }
+             }
+</script>
+</style>
+<?php
+     require_once("configuration/sql_statements.php");
+     require_once("configuration/validations.php");
+    $query_judges=select_info_multiple_key("select * from account");
+    $x=count($query_judges);
+
+?>
+</head>
+
+<style>
+  .modal-vertical-centered {
+    transform: translate(0, 50%) !important;
+    -ms-transform: translate(0, 50%) !important; /* IE 9 */
+    -webkit-transform: translate(0, 50%) !important; /* Safari and Chrome */
+  }
+
+}
+</style>
+<body>
+
+    <div class = "container">
+		<div class="jumbotron">
+			<div class = "row">
+				<div class = "col-xs-6">
+					<img src="images/Santo_Tomas_La_Union.png" class="img-rounded" alt="Cinque Terre" width="100" height="100">
+				</div>
+			</div>
+		</div>
+
+		<nav class="navbar navbar-default">
+		  <div class="container-fluid">
+			<ul class="nav navbar-nav">
+			  <li><a href ="#"><span class="glyphicon glyphicon-home"></span>&nbsp;Santo Tomas</a><li>
+			  <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;Crime Map</a></li>
+			  <li><a href="#"><span class="glyphicon glyphicon-home"></span>&nbsp;Statistics</a></li>
+			</ul>
+
+		   <ul class="nav navbar-nav navbar-right">
+              <li><a class="btn btn-sm" data-toggle="modal" data-target="#myModal"><span class="glyphicon glyphicon-log-in"></span> Login</button></a></li>
+		   </ul>
+		  </div>
+		</nav>
+
+    </div>
+
+    <div id="myModal" class="modal fade" role="dialog">
+      <div class="modal-dialog modal-vertical-centered modal-sm">
+
+        <!-- Modal content-->
+
+          <div class="container">
+            <div class="panel-group">
+              <div class="col-lg-3 col-md-11 col-sm-2 col-xs-12">
+                <div class="panel panel-default">
+                  <div class="panel-heading">Login</div>
+                  <div class="panel-body">
+                     <form action="check.php" method="post">
+                      <div class="form-group">
+                        <label for="username">Username</label>
+                        <input type="username" name = "username" class="form-control" id ="username">
+                      </div>
+                      <div class="form-group">
+                        <label for="pwd">Password:</label>
+                        <input type="password" name = "password" class="form-control" id="pwd">
+                      </div>
+                      <input type="button" name="login_but" value="Log In" onclick="validation(this.form)" />
+                      <!-- <button type="submit" class="btn btn-default" onclick="validation(this.form)">Submit</button> -->
+                      <button type="cancel" class="btn btn-default">Cancel</button>
+                    </form>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+
+      </div>
+    </div>
+
+</body>
+</html>
